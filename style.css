@@ -1,0 +1,24 @@
+/* Set border-box */
+.grid-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* A row is a flex container that should display it's elements horizontally */
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+
+/* A square is a flex item */
+.square {
+    flex: 1;   
+    height: 60px;
+    border: 1rem solid blue;
+}
