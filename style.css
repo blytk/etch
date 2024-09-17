@@ -1,9 +1,15 @@
 /* Set border-box */
 .grid-container {
+    height: 800px;
+    width: auto;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    margin-top: 75px;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 100px;
+    border: solid black;
 }
 
 /* A row is a flex container that should display it's elements horizontally */
@@ -11,14 +17,22 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    flex: 1;
+    flex: 1 1 0;
 }
 
 /* A square is a flex item */
 .square {
-    flex: 1;   
-    height: 60px;
-    border: 1rem solid blue;
+    flex: 1 1 0;
+}
+
+.square:before {
+    padding-top:100%;
+}
+
+#square-number-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
 }

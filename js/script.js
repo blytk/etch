@@ -2,10 +2,33 @@
     // Select "grid-container"
         // Create 16 rows, each row has 16 squares (function with parameters for modularity)
 
+document.addEventListener("DOMContentLoaded", () => {
+    createGrid(16, 16);
+});
+
+// When button is clicked, delete the current grid and create a new one with the user's desired size (max 100x100)
+squareNumberButton = document.querySelector("#square-number-btn");
+squareNumberButton.addEventListener("click", function() {
+    // ask user for input while not a number > 1 and < 100
+    let userInput = 0;
+    do {
+        userInput = prompt("Enter number of rows (MAX 100): ");
+    } while (userInput < 2 || userInput > 100);
+
+    // delete the current grid
+    document.querySelector(".grid-container").remove();
+    const newGrid = document.createElement("div");
+    newGrid.classList.add("grid-container");
+    document.body.appendChild(newGrid);
+
+    // generate new grid
+    createGrid(userInput, userInput);
+})
+
 // Create a row with square amount of squares
 function createRow(squares) {
     // A row should be a div, flex, with children horizontally (append squares)
-    const gridContainer = document.querySelector(".grid-container");
+    let gridContainer = document.querySelector(".grid-container");
     const newRow = document.createElement("div");
     newRow.classList.add("row");
     
@@ -13,6 +36,10 @@ function createRow(squares) {
     for (let i = 0; i < squares; i++) {
         const newSquare = document.createElement("div");
         newSquare.classList.add("square", i);
+        /* Set up a hover effect for each square */
+        newSquare.addEventListener("mouseenter", function() {
+            colorSquare(newSquare);
+        })
 
         newRow.appendChild(newSquare);
     }
@@ -25,6 +52,11 @@ function createGrid(rows, squares) {
         createRow(squares);
     }
 }
+
+function colorSquare(squareToColor) {
+    squareToColor.setAttribute("style", "background-color: black");
+}
+
 
 // It's best to put your grid of squares inside a "container" div (written in html)
 // Use flexbox to make the divs appear as a grid
